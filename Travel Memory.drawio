@@ -1,0 +1,61 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="KWUK04F5IKX8Q5DRfNDD">
+    <mxGraphModel dx="1519" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uVKAlW17mamPMETCuiwV-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="User Browser" vertex="1">
+          <mxGeometry height="50" width="120" x="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" value="Frontend ALB&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;Listener HTTP :80&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="325" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-3" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-1" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Frontend EC2 #1&lt;br&gt;frontend-master&lt;br&gt;Nginx :80" vertex="1">
+          <mxGeometry height="70" width="160" x="200" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Frontend EC2 #2&lt;br&gt;frontend-2&lt;br&gt;Nginx :80" vertex="1">
+          <mxGeometry height="70" width="160" x="440" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-6" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-2" style="endArrow=classic;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-4" value="route /">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-7" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-2" style="endArrow=classic;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-5" value="route /">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" value="Backend ALB&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;Listener HTTP :80&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="325" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-9" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-4" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-8" value="API Requests">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-10" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-5" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-8" value="API Requests">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Backend EC2 #1&lt;br&gt;backend-master&lt;br&gt;Node.js :3000" vertex="1">
+          <mxGeometry height="70" width="160" x="200" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Backend EC2 #2&lt;br&gt;backend-2&lt;br&gt;Node.js :3000" vertex="1">
+          <mxGeometry height="70" width="160" x="440" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-13" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-8" style="endArrow=classic;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-11" value="route /hello">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-14" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-8" style="endArrow=classic;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-12" value="route /hello">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-15" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" value="MongoDB Atlas&lt;br&gt;Cloud Database" vertex="1">
+          <mxGeometry height="80" width="120" x="340" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-16" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-11" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-15" value="MongoDB Conn">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uVKAlW17mamPMETCuiwV-17" edge="1" parent="1" source="uVKAlW17mamPMETCuiwV-12" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uVKAlW17mamPMETCuiwV-15" value="MongoDB Conn">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

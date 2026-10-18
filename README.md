@@ -47,7 +47,11 @@ Step 1: Database Setup (MongoDB Atlas)
 5. Navigate to Network Access -> click Add IP Address-> type `0.0.0.0/0` to ensure elastic EC2 nodes can scale and connect without interruption.
 6. Verify access  and created DB by connecting locally via MongoDB Compass using your cluster connection URI:
    `mongodb+srv://<user>:<password>@travelmemory-cluster.uztt61j.mongodb.net/`
+   
  Data format added like
+
+
+```json
 {
     "tripName": "Incredible India",
     "startDateOfJourney": "19-03-2022",
@@ -61,7 +65,8 @@ Step 1: Database Setup (MongoDB Atlas)
     "shortDescription":"India is a wonderful country with rich culture and good people.",
     "featured": true
 }
-   
+```
+
 
 Step 2: Establish Master Infrastructure Templates
 Launch two base Ubuntu EC2 instances (Type: t3.micro) within your active AWS console to serve as base master images:
@@ -78,11 +83,11 @@ Ensure your attached AWS Security Groups permit inbound traffic rules for **SSH 
    sudo apt install nodejs npm git -y
   
 3. Clone the source repository to the user directory:
-  bash
+  ```bash
    git clone https://github.com
    cd TravelMemory/backend
    npm install
-  
+  ```
   4. Construct your production environment configuration:
   bash
    nano .env
@@ -97,11 +102,10 @@ Ensure your attached AWS Security Groups permit inbound traffic rules for **SSH 
    sudo nano /etc/systemd/system/travelmemory-backend.service
   
    Add the following unit configuration data:
-  ini
+```  ini
    [Unit]
    Description=TravelMemory Backend API
    After=network.target
-
    [Service]
    Type=simple
    User=ubuntu
@@ -114,9 +118,9 @@ Ensure your attached AWS Security Groups permit inbound traffic rules for **SSH 
 
    [Install]
    WantedBy=multi-user.target
-  
+  ```
 6. Start and verify the application background service process:
-   bash
+  ``` bash
    sudo systemctl daemon-reload
    sudo systemctl enable travelmemory-backend
    sudo systemctl start travelmemory-backend
@@ -126,15 +130,15 @@ Ensure your attached AWS Security Groups permit inbound traffic rules for **SSH 
 Step 4: Configure Frontend Master
 1. Access the `frontend-master` server tier via SSH client terminals.
 2. Update global packages and fetch Nginx utilities:
-   bash
+  ``` bash
    sudo apt update
    sudo apt install nodejs npm nginx git -y
-     
+    ``` 
 4. Move into the application assets structure:
-   bash
+   ```bash
    git clone https://github.com
    cd TravelMemory/frontend
-   
+   ```
 5. Map the API location configurations using an initial connection check:
    bash
    nano src/url.js
@@ -144,17 +148,18 @@ Step 4: Configure Frontend Master
    export const baseUrl = "http://<YOUR_BACKEND_MASTER_IP>:3000";
    
 6. Compile production code structures and align with Nginx virtual directory requirements:
-   bash
+   ```bash
    npm install
    npm run build
    sudo mkdir -p /var/www/html
    sudo cp -r build/* /var/www/html/
-   
+  ``` 
 7. Start the web proxy infrastructure daemon:
-   bash
+   ```bash
    sudo systemctl enable nginx
    sudo systemctl restart nginx
    How to run BE
+```
 Note: Make sure you have the .env file already added
 REACT_APP_BACKEND_URL=http://localhost:3001
 
@@ -189,13 +194,13 @@ Because the target backend load balancing endpoint DNS is computed fluidly after
    export const baseUrl = "http://amazonaws.com";
    
 4. Rebuild the optimized application distribution blocks, clear the runtime folder contents, and re-trigger the Nginx service wrapper:
-   bash
+   '''bash
    npm run build
    sudo rm -rf /var/www/html/*
    sudo cp -r build/* /var/www/html/
    sudo systemctl restart nginx
-
+```
    Please try with frontendapplication loadbaler url
-   http://http://ravelmemory-frontend-alb-340298857.ap-southeast-2.elb.amazonaws.com/addexperience
+   http://<frontend>.elb.amazonaws.com/addexperience
 
    

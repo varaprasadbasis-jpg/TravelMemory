@@ -1,4 +1,38 @@
 # TravelMemory — Detailed AWS Deployment Architecture
+  
+```text
+[User Browser]
+       │
+       ▼ (HTTP:80)
+┌──────────────┐
+│ Frontend ALB │
+└──────┬───────┘
+       ├───────────────────────┐
+       ▼                       ▼
+┌──────────────┐        ┌──────────────┐
+│ Frontend EC2 │        │ Frontend EC2 │
+│  (Master)    │        │   (Node-2)   │
+└──────┬───────┘        └──────┬───────┘
+       │ (API Requests)        │
+       └───────────┬───────────┘
+                   ▼
+            ┌─────────────┐
+            │ Backend ALB │
+            └──────┬──────┘
+       ┌───────────┴───────────┐
+       ▼                       ▼
+┌──────────────┐        ┌──────────────┐
+│ Backend EC2  │        │ Backend EC2  │
+│  (Master)    │        │   (Node-2)   │
+└──────┬───────┘        └──────┬───────┘
+       │ (:3000)               │ (:3000)
+       └───────────┬───────────┘
+                   ▼
+        ┌────────────────────┐
+        │   MongoDB Atlas    │
+        │  (Cloud Database)  │
+        └────────────────────┘
+```
 
 This repository documents the production-grade, highly-available deployment of **TravelMemory**, a full-stack MERN application. The environment is hosted on **AWS EC2 instances running Ubuntu** configured across two load-balanced tiers (Frontend and Backend) with automated failover and native connection pooling to a cloud-hosted database.
 

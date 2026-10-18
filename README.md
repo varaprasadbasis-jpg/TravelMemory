@@ -179,5 +179,6 @@ Because the target backend load balancing endpoint DNS is computed fluidly after
    sudo systemctl restart nginx
 
    Please try with frontendapplication loadbaler url
+   http://http://ravelmemory-frontend-alb-340298857.ap-southeast-2.elb.amazonaws.com/addexperience
 
    

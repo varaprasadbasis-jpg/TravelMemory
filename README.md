@@ -45,8 +45,23 @@ Step 1: Database Setup (MongoDB Atlas)
 3. Provision a **Free Sandbox M0 Cluster** hosted on AWS in your local region (e.g., `ap-south-1` Mumbai).
 4. Add a new dedicated Database User with a secure password under Database Access.
 5. Navigate to Network Access -> click Add IP Address-> type `0.0.0.0/0` to ensure elastic EC2 nodes can scale and connect without interruption.
-6. Verify access by connecting locally via MongoDB Compass using your cluster connection URI:
+6. Verify access  and created DB by connecting locally via MongoDB Compass using your cluster connection URI:
    `mongodb+srv://<user>:<password>@travelmemory-cluster.uztt61j.mongodb.net/`
+ Data format added like
+{
+    "tripName": "Incredible India",
+    "startDateOfJourney": "19-03-2022",
+    "endDateOfJourney": "27-03-2022",
+    "nameOfHotels":"Hotel Namaste, Backpackers Club",
+    "placesVisited":"Delhi, Kolkata, Chennai, Mumbai",
+    "totalCost": 800000,
+    "tripType": "leisure",
+    "experience": "Lorem Ipsum, Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum,Lorem Ipsum, ",
+    "image": "https://t3.ftcdn.net/jpg/03/04/85/26/360_F_304852693_nSOn9KvUgafgvZ6wM0CNaULYUa7xXBkA.jpg",
+    "shortDescription":"India is a wonderful country with rich culture and good people.",
+    "featured": true
+}
+   
 
 Step 2: Establish Master Infrastructure Templates
 Launch two base Ubuntu EC2 instances (Type: t3.micro) within your active AWS console to serve as base master images:
@@ -114,13 +129,13 @@ Step 4: Configure Frontend Master
    bash
    sudo apt update
    sudo apt install nodejs npm nginx git -y
-   
-3. Move into the application assets structure:
+     
+4. Move into the application assets structure:
    bash
    git clone https://github.com
    cd TravelMemory/frontend
    
-4. Map the API location configurations using an initial connection check:
+5. Map the API location configurations using an initial connection check:
    bash
    nano src/url.js
    
@@ -128,18 +143,20 @@ Step 4: Configure Frontend Master
    javascript
    export const baseUrl = "http://<YOUR_BACKEND_MASTER_IP>:3000";
    
-5. Compile production code structures and align with Nginx virtual directory requirements:
+6. Compile production code structures and align with Nginx virtual directory requirements:
    bash
    npm install
    npm run build
    sudo mkdir -p /var/www/html
    sudo cp -r build/* /var/www/html/
    
-6. Start the web proxy infrastructure daemon:
+7. Start the web proxy infrastructure daemon:
    bash
    sudo systemctl enable nginx
    sudo systemctl restart nginx
-   
+   How to run BE
+Note: Make sure you have the .env file already added
+REACT_APP_BACKEND_URL=http://localhost:3001
 
 ---
 
